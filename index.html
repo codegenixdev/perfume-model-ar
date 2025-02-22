@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Luxury Perfume Preview</title>
+
+    <!-- Import model-viewer component -->
+    <script
+      type="module"
+      src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"
+    ></script>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Arial", sans-serif;
+      }
+
+      body {
+        background-color: #f8f8f8;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+      }
+
+      .title {
+        color: #1a1a1a;
+        margin: 20px 0;
+        font-size: 2rem;
+        font-weight: 300;
+        text-align: center;
+      }
+
+      .card {
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        width: 100%;
+        max-width: 800px;
+        padding: 20px;
+        margin: 20px;
+      }
+
+      model-viewer {
+        width: 100%;
+        height: 500px;
+        background-color: #fafafa;
+        border-radius: 10px;
+        --poster-color: transparent;
+      }
+
+      /* Custom AR button styling */
+      .ar-button {
+        background-color: #000000;
+        color: white;
+        border-radius: 30px;
+        border: none;
+        position: absolute;
+        bottom: 16px;
+        right: 16px;
+        padding: 12px 24px;
+        font-size: 14px;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .ar-button:hover {
+        background-color: #333;
+      }
+
+      /* Mobile optimization */
+      @media (max-width: 768px) {
+        .title {
+          font-size: 1.5rem;
+        }
+
+        .card {
+          margin: 10px;
+          padding: 15px;
+        }
+
+        model-viewer {
+          height: 400px;
+        }
+      }
+
+      /* Loading animation */
+      .loading {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        text-align: center;
+        font-size: 16px;
+        color: #666;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 class="title">Perfume Preview</h1>
+
+    <div class="card">
+      <model-viewer
+        src="/public/Perfume5.glb"
+        ar
+        ar-modes="webxr scene-viewer quick-look"
+        camera-controls
+        auto-rotate
+        rotation-per-second="30deg"
+        shadow-intensity="1"
+        shadow-softness="0.7"
+        exposure="1.2"
+        environment-image="neutral"
+        alt="3D Perfume Model"
+        loading="eager"
+        poster="path/to/your/poster-image.jpg"
+      >
+        <div class="loading" slot="poster">Loading 3D Preview...</div>
+
+        <button slot="ar-button" class="ar-button">
+          <svg height="24" width="24" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M12 0C5.38 0 0 5.38 0 12s5.38 12 12 12 12-5.38 12-12S18.62 0 12 0zm0 2c5.52 0 10 4.48 10 10s-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2zm0 3c-3.87 0-7 3.13-7 7s3.13 7 7 7 7-3.13 7-7-3.13-7-7-7zm0 2c2.76 0 5 2.24 5 5s-2.24 5-5 5-5-2.24-5-5 2.24-5 5-5z"
+            />
+          </svg>
+          View in AR
+        </button>
+      </model-viewer>
+    </div>
+  </body>
+</html>
